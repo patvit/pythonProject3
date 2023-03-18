@@ -5,25 +5,29 @@ from pprint import pprint
 import requests
 import os
 
-
-
+#=======задача 3============
+url = "https://api.stackexchange.com/2.3/answers?fromdate=1679011200&todate=1679097600&order=desc&sort=votes&site=stackoverflow&filter=!nOedRLjYKj"
+resp = requests.get(url)
+data = resp.json()
+for item in data['items']:
+    if 'python' in item['tags']:
+        print(f"новость={item['owner']['link']}")
 
 
 #=======задача 1============
-#
-# url = "https://akabab.github.io/superhero-api/api//all.json"
-# resp = requests.get(url)
-# data = resp.json()
-# Heros = ['Hulk','Captain America','Thanos']
-# max = 0
-# name =''
-# for hero in data:
-#     if hero['name'] in Heros:
-#         if max < hero['powerstats']['intelligence']:
-#             max = hero['powerstats']['intelligence']
-#             name = hero['name']
-#
-# print(f"Самый умный герой { name} c интеллектом {max}")
+
+url = "https://akabab.github.io/superhero-api/api//all.json"
+resp = requests.get(url)
+data = resp.json()
+Heros = ['Hulk','Captain America','Thanos']
+max = 0
+name =''
+for hero in data:
+    if hero['name'] in Heros:
+        if max < hero['powerstats']['intelligence']:
+            max = hero['powerstats']['intelligence']
+            name = hero['name']
+print(f"Самый умный герой { name} c интеллектом {max}")
 
 
 #=======задача 2============
